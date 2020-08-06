@@ -68,3 +68,18 @@ p {
     border:none;
 }
 
+
+
+.shape {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.square {
+    border-radius: 0;
+}
