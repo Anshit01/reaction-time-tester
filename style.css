@@ -36,12 +36,26 @@ p {
 #control {
     float: right;
     margin: 20px;
+    text-align: center;
+}
+
+#time {
+    font-size: 150%;
+}
+
+#time > span {
+    padding: 0 10px;
+}
+
+#last-time, #best-time {
+    border-right: 2px solid #ccc;
 }
 
 #start-btn {
     font-size: 125%;
     padding: 10px 50px;
-
+    margin: 10px auto;
+    display: block;
     border: none;
     border-radius: 125px;
 }
