@@ -21,26 +21,33 @@ function onLoad() {
     // for(var i = 0; i < shapeNums; i++){
     //     generateShape(i)
     // }
+
+    document.getElementById("start-btn").onclick = function() {
+        startBtnClick()
+    }
+    
+    document.getElementById("shape0").onclick = function() {
+        hideShape()
+    }
 }
 
-document.getElementById("start-btn").onclick = function() {
+function hideShape() {
+    document.getElementById("shape0").style.display = "none"
+}
+
+function clear() {
+    canvas.innerHTML = "<div id='shape0' class='shape'></div>"
+}
+
+function startBtnClick() {
     console.log("hello")
     canvasPositionInfo = canvas.getBoundingClientRect()
     canvasWidth = canvasPositionInfo.width
     canvasHeight = canvasPositionInfo.height
     canvasYOffset = canvasYOffset
     console.log(canvasWidth.toString() + " " + canvasHeight.toString() + " " + canvasYOffset.toString());
-    clear()
-    generateShape("shape0")
     
-}
-
-document.getElementById("shape0").onclick = function() {
-    clear()
-}
-
-function clear() {
-    canvas.innerHTML = "<div id='shape0' class='shape' onclick='clear();'></div>"
+    generateShape("shape0")
 }
 
 function generateShape(shapeid) {
@@ -53,6 +60,8 @@ function generateShape(shapeid) {
     shape.style.backgroundColor = colors[getRand(colors.length)]
     shape.style.left = getRand(canvasWidth - side) + "px"
     shape.style.top = (canvasYOffset + getRand(canvasHeight - side)) + "px"
+    shape.style.display = ""
+    
 }
 
 function getRand(n) {
@@ -71,5 +80,3 @@ function min(a, b){
     }
     return b;
 }
-
-onLoad()
