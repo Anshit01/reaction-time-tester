@@ -12,6 +12,11 @@ var canvasYOffset
 
 function onLoad() {
     canvas = document.getElementById("canvas")
+    var vh = document.documentElement.clientHeight
+    var headerHeight = document.getElementById("header").getBoundingClientRect().height
+
+    canvas.style.height = (vh - headerHeight) + "px"
+
     canvasPositionInfo = canvas.getBoundingClientRect()
     canvasWidth = canvasPositionInfo.width
     canvasHeight = canvasPositionInfo.height
@@ -51,7 +56,7 @@ function getCanvasInfo() {
     canvasYOffset = canvasYOffset
     // console.log(canvasWidth.toString() + " " + canvasHeight.toString() + " " + canvasYOffset.toString());
     if(canvasHeight > canvasWidth){
-        canvasHeight = 0.8 * canvasHeight;
+        canvasHeight = 0.9 * canvasHeight;
     }
 }
 
