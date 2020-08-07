@@ -83,3 +83,11 @@ p {
 .square {
     border-radius: 0;
 }
+
+#shape0:hover {
+    opacity: 70%;
+}
+
+#shape0:active {
+    opacity: 50%;
+}

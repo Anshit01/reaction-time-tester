@@ -1,14 +1,27 @@
-var shapes = ["circle", "square"]
+var shapeTypes = ["circle", "square"]
 var colors = ["#f00", "#0f0", "#00f"]
 var shapeCount = 0
 
 
-var canvas = document.getElementById("canvas")
-var canvasPositionInfo = canvas.getBoundingClientRect()
-var canvasWidth = canvasPositionInfo.width
-var canvasHeight = canvasPositionInfo.height
-var canvasYOffset = canvasPositionInfo.y
+var canvas
+var canvasPositionInfo
+var canvasWidth
+var canvasHeight 
+var canvasYOffset
 
+
+function onLoad() {
+    canvas = document.getElementById("canvas")
+    canvasPositionInfo = canvas.getBoundingClientRect()
+    canvasWidth = canvasPositionInfo.width
+    canvasHeight = canvasPositionInfo.height
+    canvasYOffset = canvasPositionInfo.y
+
+    // var shapeNums = getRand(4) + 3
+    // for(var i = 0; i < shapeNums; i++){
+    //     generateShape(i)
+    // }
+}
 
 document.getElementById("start-btn").onclick = function() {
     console.log("hello")
@@ -18,20 +31,23 @@ document.getElementById("start-btn").onclick = function() {
     canvasYOffset = canvasYOffset
     console.log(canvasWidth.toString() + " " + canvasHeight.toString() + " " + canvasYOffset.toString());
     clear()
-    generateShape()
+    generateShape("shape0")
     
 }
 
-function clear() {
-    canvas.innerHTML = ""
+document.getElementById("shape0").onclick = function() {
+    clear()
 }
 
-function generateShape() {
-    shapeCount++
-    var shapeName = shapes[getRand(shapes.length)]
-    canvas.innerHTML += "<div id='shape" + shapeCount + "' class='shape " + shapeName + "'></div>"
-    var shape = document.getElementById("shape" + shapeCount)
+function clear() {
+    canvas.innerHTML = "<div id='shape0' class='shape' onclick='clear();'></div>"
+}
+
+function generateShape(shapeid) {
+    var shapeType = shapeTypes[getRand(shapeTypes.length)]
+    var shape = document.getElementById(shapeid)
     var side = Math.floor(min(canvasWidth, canvasHeight) * (getRand(40) + 10) / 100)
+    shape.className = "shape " + shapeType
     shape.style.width = side + "px"
     shape.style.height = side + "px"
     shape.style.backgroundColor = colors[getRand(colors.length)]
@@ -55,3 +71,5 @@ function min(a, b){
     }
     return b;
 }
+
+onLoad()
