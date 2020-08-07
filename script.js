@@ -40,14 +40,19 @@ function clear() {
 }
 
 function startBtnClick() {
-    console.log("hello")
+    getCanvasInfo()
+    generateShape("shape0")
+}
+
+function getCanvasInfo() {
     canvasPositionInfo = canvas.getBoundingClientRect()
     canvasWidth = canvasPositionInfo.width
     canvasHeight = canvasPositionInfo.height
     canvasYOffset = canvasYOffset
-    console.log(canvasWidth.toString() + " " + canvasHeight.toString() + " " + canvasYOffset.toString());
-    
-    generateShape("shape0")
+    // console.log(canvasWidth.toString() + " " + canvasHeight.toString() + " " + canvasYOffset.toString());
+    if(canvasHeight > canvasWidth){
+        canvasHeight = 0.8 * canvasHeight;
+    }
 }
 
 function generateShape(shapeid) {
