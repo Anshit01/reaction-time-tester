@@ -1,13 +1,17 @@
 var shapeTypes = ["circle", "square"]
 var colors = ["#f00", "#0f0", "#00f"]
 var shapeCount = 0
-
+var totalRounds = 10, roundi = 0
 
 var canvas
 var canvasPositionInfo
 var canvasWidth
 var canvasHeight 
 var canvasYOffset
+
+var startTimestamp, prevTimestamp, curTimestamp
+var lastTime = Number.MAX_SAFE_INTEGER, bestTime = Number.MAX_SAFE_INTEGER
+var averageTime = 0
 
 
 function onLoad() {
@@ -33,6 +37,12 @@ function onLoad() {
     
     document.getElementById("shape0").onclick = function() {
         hideShape()
+        curTimestamp = getTimestampNow()
+        roundi++
+        updateStats()
+        if(roundi < totalRounds){
+            generateShape("shape0")
+        }
     }
 }
 
@@ -45,7 +55,12 @@ function clear() {
 }
 
 function startBtnClick() {
+    roundi = 0
+    lastTime = Number.MAX_SAFE_INTEGER
+    bestTime = Number.MAX_SAFE_INTEGER
+    averageTime = 0
     getCanvasInfo()
+    startTimestamp = getTimestampNow()
     generateShape("shape0")
 }
 
@@ -71,7 +86,18 @@ function generateShape(shapeid) {
     shape.style.left = getRand(canvasWidth - side) + "px"
     shape.style.top = (canvasYOffset + getRand(canvasHeight - side)) + "px"
     shape.style.display = ""
+    prevTimestamp = getTimestampNow()
     
+}
+
+function updateStats() {
+    lastTime = curTimestamp - prevTimestamp
+    bestTime = min(lastTime, bestTime)
+    averageTime = ((averageTime * (roundi - 1)) + lastTime) / roundi
+    document.getElementById("last-time-value").innerHTML = (lastTime/1000).toFixed(2)
+    document.getElementById("best-time-value").innerHTML = (bestTime/1000).toFixed(2)
+    document.getElementById("average-time-value").innerHTML = (averageTime/1000).toFixed(2)
+
 }
 
 function getRand(n) {
@@ -89,4 +115,9 @@ function min(a, b){
         return a;
     }
     return b;
+}
+
+function getTimestampNow() {
+    var d = new Date();
+    return d.getTime();
 }
