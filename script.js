@@ -1,7 +1,8 @@
 var shapeTypes = ["circle", "square"]
-var colors = ["#f00", "#0f0", "#00f"]
+var colors = ["#7C4DFF", "#9C27B0", "#2196F3", "#009688", "#8BC34A", "#FFC107", "#FF5722", "#795548"]
+
 var shapeCount = 0
-var totalRounds = 10, roundi = 0
+var totalRounds = 20, roundi = 0
 
 var canvas
 var canvasPositionInfo
