@@ -43,6 +43,8 @@ function onLoad() {
         updateStats()
         if(roundi < totalRounds){
             generateShape("shape0")
+        }else{
+            document.getElementById("overlay").style.display = "inherit"
         }
     }
 }
@@ -61,6 +63,7 @@ function startBtnClick() {
     lastTime = Number.MAX_SAFE_INTEGER
     bestTime = Number.MAX_SAFE_INTEGER
     averageTime = 0
+    document.getElementById("overlay").style.display = "none";
     getCanvasInfo()
     startTimestamp = getTimestampNow()
     generateShape("shape0")
@@ -99,7 +102,10 @@ function updateStats() {
     document.getElementById("last-time-value").innerHTML = (lastTime/1000).toFixed(2)
     document.getElementById("best-time-value").innerHTML = (bestTime/1000).toFixed(2)
     document.getElementById("average-time-value").innerHTML = (averageTime/1000).toFixed(2)
-
+    if(roundi == totalRounds){
+        document.getElementById("end-best-time-value").innerHTML = (bestTime/1000).toFixed(2)
+        document.getElementById("end-average-time-value").innerHTML = (averageTime/1000).toFixed(2)
+    }
 }
 
 function getRand(n) {
