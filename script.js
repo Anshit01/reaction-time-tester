@@ -49,6 +49,7 @@ function onLoad() {
 
 function hideShape() {
     document.getElementById("shape0").style.display = "none"
+    document.getElementById("canvas").focus()
 }
 
 function clear() {

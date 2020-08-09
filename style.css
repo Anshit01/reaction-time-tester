@@ -60,6 +60,7 @@ p {
     display: block;
     border: none;
     border-radius: 100px;
+    outline: none;
 }
 #start-btn:hover {
     background-color: rgb(181, 225, 255);
@@ -93,4 +94,11 @@ p {
 
 #shape0:active {
     opacity: 50%;
+}
+
+#overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: #00000010;
 }
